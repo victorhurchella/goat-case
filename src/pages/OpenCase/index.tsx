@@ -12,7 +12,7 @@ import { getRarityLabel } from "../../utils/rarities";
 
 export default function OpenCase() {
   const [spinned, setSpinned] = useState(false);
-  const [sortedSkins, setSortedSkins] = useState<Skin[]>([]); // Armazena todos os sorteios
+  const [sortedSkins, setSortedSkins] = useState<Skin[]>([]);
   const { data: caseData } = useGetCase();
 
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ export default function OpenCase() {
 
   if (!caseData) return <></>;
 
-  // Array para armazenar os resultados de cada shuffle
   const allShuffles = Array.from({ length: amountToOpen }, () =>
     shuffle([
       ...caseData!.skins,
@@ -34,11 +33,11 @@ export default function OpenCase() {
   setTimeout(() => {
     if (spinned) return;
 
-    setSpinned(true);
-    // Extrai o item no índice 7 de cada shuffle e armazena em sortedSkins
     const selectedSkins = allShuffles.map(
       (shuffle) => shuffle[shuffle.length - 7],
     );
+
+    setSpinned(true);
     setSortedSkins(selectedSkins);
   }, 4_800);
 
@@ -96,7 +95,7 @@ export default function OpenCase() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="my-6 relative" // 'relative' para que o ícone seja posicionado corretamente
+              className="my-6 relative"
             >
               {/* Ícone de chevronDown posicionado acima da lista */}
               <img
