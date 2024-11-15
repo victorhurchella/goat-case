@@ -10,7 +10,7 @@ const routesPaths: RoutesPaths = [
     element: <Case />,
   },
   {
-    name: "Caixa",
+    name: "Abertura da Caixa",
     path: "/opening-case",
     element: <OpenCase />,
   },
